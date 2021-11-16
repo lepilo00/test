@@ -24,7 +24,7 @@ func init() {
 	tpl = template.Must(template.ParseFiles("index.html"))
 }
 
-func Collect(usr User) {
+func InsertIntoDB(usr User) {
 	db, err := sql.Open("mysql", "root:@tcp(127.0.0.1:3306)/testdb")
 	if err != nil {
 		fmt.Println("Error1")
@@ -61,7 +61,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 
 	tpl.ExecuteTemplate(w, "login.html", usr1)
 
-	Collect(usr1)
+	InsertIntoDB(usr1)
 }
 
 func main() {
